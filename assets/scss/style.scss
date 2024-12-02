@@ -1,0 +1,166 @@
+@use 'sass:math';
+@use 'sass:string';
+
+a {
+  font-family: 'Poppins', sans-serif;
+}
+html {
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1556a0 0%, #0a2e57 45%, #020911 80%);
+  overflow: hidden;
+  background-size: 100% 200%;
+  background-position: 0% 50%;
+}
+
+body {
+  margin: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+// for n stars
+@function create-stars($n) {
+  $value: '#{math.random(2560)}px #{math.random(2560)}px #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{math.random(2560)}px #{math.random(2560)}px #FFF';
+  }
+  @return string.unquote($value)
+}
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+}
+
+.body-panel {
+  width: 50%
+}
+
+.section-header {
+  justify-self: center;
+}
+
+.about-work {
+  display: flex;
+  align-items: center;
+}
+
+.socials {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
+.social-item {
+  margin: 10px;
+}
+
+.text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 5px;
+  background: -webkit-linear-gradient(white, #91d6f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-me {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+.scroll-down {
+  background: transparent;
+  border: none;
+}
+
+.spacing-0 {
+  margin: 0 0 0 0;
+}
+
+#farStars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: create-stars(700);
+  animation: starAnimation 50s linear infinite;
+  
+  &:after {
+    content: " ";
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    top: -100%;
+  }
+
+}
+
+#mediumStars {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: create-stars(200);;
+  animation: starAnimation 100s linear infinite;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    top: -100%;
+  }
+}
+
+#nearStars {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: create-stars(100);
+  animation: starAnimation 150s linear infinite;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: transparent;
+    top: -100%;
+  }
+}
+
+
+@keyframes starAnimation {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
